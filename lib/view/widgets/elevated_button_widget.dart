@@ -9,15 +9,15 @@ class ElevatedButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 48,
-      width: MediaQuery.sizeOf(context).width,
+      height: 58,
       child: ElevatedButton(
           style: ButtonStyle(
-              elevation: const MaterialStatePropertyAll(0),
-              backgroundColor: const MaterialStatePropertyAll(
-                  Color.fromARGB(255, 47, 103, 255)),
-              shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8)))),
+            elevation: const MaterialStatePropertyAll(0),
+            backgroundColor: const MaterialStatePropertyAll(
+                Color.fromARGB(255, 47, 103, 255)),
+            shape: MaterialStatePropertyAll(
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(0))),
+          ),
           onPressed: onPressed,
           child: Text(
             text,

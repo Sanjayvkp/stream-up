@@ -1,26 +1,45 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:stream_up/controller/google_auth.dart';
 import 'package:stream_up/firebase_options.dart';
 import 'package:stream_up/view/pages/login_page.dart';
+import 'package:stream_up/view/pages/start_page.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  runApp(ProviderScope(child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
+      title: 'Video Conference App',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        primarySwatch: Colors.teal,
       ),
-      home: LoginPage(),
+      home: FutureBuilder(
+        future: LoginServices.signInWithGoogle(),
+        builder: (context, snapshot) {
+          final user = GoogleSignIn().currentUser;
+          if (user == null) {
+            return LoginPage();
+          } else {
+            return StartPage();
+          }
+        },
+      ),
     );
   }
 }
