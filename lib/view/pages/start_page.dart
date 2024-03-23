@@ -3,62 +3,53 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stream_up/controller/auth_provider.dart';
 import 'package:stream_up/view/pages/video_call_page.dart';
 import 'package:stream_up/view/widgets/elevated_button_widget.dart';
+import 'package:stream_up/view/widgets/logo_widget.dart';
+import 'package:stream_up/view/widgets/title_widget.dart';
 
 class StartPage extends ConsumerWidget {
   const StartPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // bool validateError = false;
-    // final data = ref.read(authenticationProvider.notifier);
-    // final channelController = TextEditingController();
+    final data = ref.read(authenticationProvider.notifier);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff6393c9),
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-              onPressed: () {
-                ref.read(authenticationProvider.notifier).signOut(context);
-              },
-              icon: Icon(Icons.logout))
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Color(0xff6393c9),
+                  Color(0xffd8eaff),
+                  Color(0xffd8eaff),
+                ],
+              ),
+            ),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  LogoWidget(),
+                  TitleWidget(
+                    title: 'STREAM UP',
+                    subtitle: 'Lets Begin',
+                  )
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            right: 16,
+            top: 32,
+            child: IconButton(
+                onPressed: () {
+                  data.signOut(context);
+                },
+                icon: Icon(Icons.logout)),
+          )
         ],
-      ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xff6393c9),
-              Color(0xffd8eaff),
-              Color(0xffd8eaff),
-            ],
-          ),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                  width: 200,
-                  height: 150,
-                  child: Image.asset('assets/images/video_logo.png')),
-              Text(
-                'STREAM UP',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.w800),
-              ),
-              Text(
-                'Lets Begin',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  color: const Color.fromARGB(255, 73, 73, 73),
-                ),
-              ),
-            ],
-          ),
-        ),
       ),
       bottomNavigationBar: ElevatedButtonWidget(
         text: 'Create',

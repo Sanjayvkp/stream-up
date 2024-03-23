@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stream_up/controller/auth_provider.dart';
 import 'package:stream_up/view/widgets/elevated_button_widget.dart';
+import 'package:stream_up/view/widgets/logo_widget.dart';
+import 'package:stream_up/view/widgets/title_widget.dart';
 
 class LoginPage extends ConsumerWidget {
   const LoginPage({super.key});
@@ -27,22 +29,11 @@ class LoginPage extends ConsumerWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
-                    width: 200,
-                    height: 150,
-                    child: Image.asset('assets/images/video_logo.png')),
-                Text(
-                  'STREAM UP',
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.w800),
-                ),
-                Text(
-                  'Create your own world',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    color: const Color.fromARGB(255, 73, 73, 73),
-                  ),
-                ),
+                LogoWidget(),
+                TitleWidget(
+                  title: 'STREAM UP',
+                  subtitle: 'Create your own world',
+                )
               ],
             ),
           ),
