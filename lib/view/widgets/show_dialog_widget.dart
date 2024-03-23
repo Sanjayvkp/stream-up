@@ -16,6 +16,7 @@ class _ShowDialogWidgetState extends State<ShowDialogWidget> {
   @override
   void dispose() {
     uidController.dispose();
+
     super.dispose();
   }
 
@@ -30,17 +31,17 @@ class _ShowDialogWidgetState extends State<ShowDialogWidget> {
           children: [
             TextFieldWidget(
               controller: uidController,
-              errorText: _validateError ? "uid is mandatory" : null,
+              errorText: _validateError ? "user id is mandatory" : null,
             ),
             SizedBox(
-              height: 16,
+              height: 32,
             ),
             ElevatedButtonWidget(
               text: 'Join meet',
               onPressed: () {
                 join();
               },
-              width: 180,
+              width: 220,
               height: 40,
             ),
           ],
@@ -53,10 +54,13 @@ class _ShowDialogWidgetState extends State<ShowDialogWidget> {
           ? _validateError = true
           : _validateError = false;
     });
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => VideoCallPage(callID: uidController.text),
-        ));
+    if (uidController.text.isNotEmpty) {
+      await Future.sync(() => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => VideoCallPage(callID: uidController.text),
+          )));
+    }
+    uidController.clear();
   }
 }

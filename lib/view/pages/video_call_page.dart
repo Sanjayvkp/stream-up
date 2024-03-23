@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:stream_up/utils/zego_utils.dart';
 import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
@@ -23,12 +24,24 @@ class VideoCallPage extends StatelessWidget {
             config: ZegoUIKitPrebuiltCallConfig.groupVideoCall(),
           ),
           Positioned(
-              bottom: 15,
-              left: 10,
+            top: 50,
+            left: 10,
+            child: GestureDetector(
+              onTap: () {
+                Clipboard.setData(ClipboardData(text: callID));
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('UID copied to clipboard')),
+                );
+              },
               child: Text(
-                callID,
-                style: TextStyle(color: Colors.white),
-              )),
+                'UID : ${callID}',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
         ],
       ),
     );

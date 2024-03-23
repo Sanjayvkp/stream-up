@@ -11,7 +11,7 @@ class TextFieldWidget extends StatelessWidget {
     return TextField(
       controller: controller,
       decoration: InputDecoration(
-          hintText: 'user id...',
+          hintText: 'Enter User id...',
           fillColor: Colors.grey.withOpacity(.30),
           filled: true,
           errorText: errorText,
