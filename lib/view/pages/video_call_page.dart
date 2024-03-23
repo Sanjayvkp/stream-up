@@ -13,7 +13,7 @@ class VideoCallPage extends StatelessWidget {
     return ZegoUIKitPrebuiltCall(
       appID: ZegoUtils.appId,
       appSign: ZegoUtils.token,
-      userID: 'user_id',
+      userID: user.uid,
       userName: user.displayName!,
       callID: callID,
       config: ZegoUIKitPrebuiltCallConfig.groupVideoCall(),

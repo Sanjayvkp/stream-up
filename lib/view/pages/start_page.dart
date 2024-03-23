@@ -3,16 +3,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stream_up/controller/auth_provider.dart';
 import 'package:stream_up/view/pages/video_call_page.dart';
 import 'package:stream_up/view/widgets/elevated_button_widget.dart';
-import 'package:stream_up/view/widgets/text_field_widget.dart';
 
 class StartPage extends ConsumerWidget {
   const StartPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    bool validateError = false;
-    final data = ref.read(authenticationProvider.notifier);
-    final channelController = TextEditingController();
+    // bool validateError = false;
+    // final data = ref.read(authenticationProvider.notifier);
+    // final channelController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff6393c9),
@@ -45,6 +44,18 @@ class StartPage extends ConsumerWidget {
                   width: 200,
                   height: 150,
                   child: Image.asset('assets/images/video_logo.png')),
+              Text(
+                'STREAM UP',
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.w800),
+              ),
+              Text(
+                'Lets Begin',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                  color: const Color.fromARGB(255, 73, 73, 73),
+                ),
+              ),
             ],
           ),
         ),

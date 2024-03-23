@@ -33,7 +33,15 @@ class LoginPage extends ConsumerWidget {
                     child: Image.asset('assets/images/video_logo.png')),
                 Text(
                   'STREAM UP',
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.w800),
+                ),
+                Text(
+                  'Create your own world',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    color: const Color.fromARGB(255, 73, 73, 73),
+                  ),
                 ),
               ],
             ),
