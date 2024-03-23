@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:stream_up/utils/zego_utils.dart';
 import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
 
@@ -10,13 +11,26 @@ class VideoCallPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
-    return ZegoUIKitPrebuiltCall(
-      appID: ZegoUtils.appId,
-      appSign: ZegoUtils.token,
-      userID: user.uid,
-      userName: user.displayName!,
-      callID: callID,
-      config: ZegoUIKitPrebuiltCallConfig.groupVideoCall(),
+    return Scaffold(
+      body: Stack(
+        children: [
+          ZegoUIKitPrebuiltCall(
+            appID: ZegoUtils.appId,
+            appSign: ZegoUtils.token,
+            userID: user.uid,
+            userName: user.displayName!,
+            callID: callID,
+            config: ZegoUIKitPrebuiltCallConfig.groupVideoCall(),
+          ),
+          Positioned(
+              bottom: 15,
+              left: 10,
+              child: Text(
+                callID,
+                style: TextStyle(color: Colors.white),
+              )),
+        ],
+      ),
     );
   }
 }

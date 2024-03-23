@@ -40,6 +40,8 @@ class LoginPage extends ConsumerWidget {
         ),
       ),
       bottomNavigationBar: ElevatedButtonWidget(
+        height: 58,
+        width: MediaQuery.sizeOf(context).width,
         text: 'Login With Google',
         onPressed: () async {
           ref.read(authenticationProvider.notifier).googleSignin(context);
